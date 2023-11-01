@@ -5,8 +5,9 @@ from bs4 import BeautifulSoup
 # Function to extract information from a list of URLs
 def extract_info(list_of_urls):
     result = []
-    for item in list_of_urls:
-        result.append(extract_info_from_page(item))
+    for i in range(len(list_of_urls)):
+        print(f"Processing link {i + 1}")
+        result.append(extract_info_from_page(list_of_urls[i]))
     return result
 
 
@@ -62,7 +63,7 @@ def extract_info_from_page(url):
             elif groupTitle == 'Adăugător':
                 for li in section.find_next('ul').find_all('li', class_='m-no_value'):
                     key = li.find('span', class_='adPage__content__features__key').text.strip()
-                    info[groupTitle][key] = None
+                    info[groupTitle][key] = True
 
             # Extract subcategory link
             elif groupTitle == 'Subcategorie':

@@ -36,5 +36,5 @@ Additionally, you will need to have RabbitMQ server running on your local machin
 
 Each script is designed to be run independently. Here are the basic usage instructions for each:
 
-`task_producer.py` can be run directly to parse links from the specified website and send them to the RabbitMQ queue for processing.
-`rabbits.py` can be run directly to start the worker threads that will process tasks from the RabbitMQ queue.
+- `task_producer.py -n <max number of pages to parse (limit)>` can be run directly to parse links from the specified website and send them to the RabbitMQ queue for processing.
+- `rabbits.py -t <number of threads (workers)>` can be run directly to start the worker threads that will process tasks from the RabbitMQ queue.

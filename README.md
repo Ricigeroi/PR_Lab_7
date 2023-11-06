@@ -34,7 +34,20 @@ Additionally, you will need to have RabbitMQ server running on your local machin
 
 ## Usage
 
-Each script is designed to be run independently. Here are the basic usage instructions for each:
+#### `task_producer.py`
 
-- `task_producer.py -n <max number of pages to parse (limit)>` can be run directly to parse links from the specified website and send them to the RabbitMQ queue for processing.
-- `rabbits.py -t <number of threads (workers)>` can be run directly to start the worker threads that will process tasks from the RabbitMQ queue.
+The `task_producer.py` script is responsible for extracting links from a specified website and queuing them as tasks for workers in a RabbitMQ queue. The script accepts command-line arguments to customize its behavior.
+
+- `-n`, `--max_pages`: The maximum number of pages to process from the website.
+  - **Type**: `int`
+  - **Default**: `1`
+  - **Usage**: `python task_producer.py --max_pages 10`
+
+#### `rabbits.py`
+
+The `rabbits.py` script is used to start worker threads that process tasks from a RabbitMQ queue. You can configure the script using the following command-line arguments:
+
+- `-t`, `--threads`: The number of worker threads to run.
+  - **Type**: `int`
+  - **Default**: `3`
+  - **Usage**: `python rabbits.py --threads 5`
